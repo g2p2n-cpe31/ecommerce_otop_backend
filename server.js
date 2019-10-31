@@ -1,55 +1,42 @@
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
-const Product = require('./models/product')
+var express = require("express");
+var cors = require("cors");
+var mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
-mongoose.connect('mongodb://localhost:27017/node-api-101', { useNewUrlParser: true })
+var mongo_uri = "mongodb+srv://godpoon:poonshit@cluster0-vvj6e.gcp.mongodb.net/otop_ecommerce?retryWrites=true&w=majority";
+mongoose.Promise = global.Promise;
+mongoose.connect(mongo_uri, { useNewUrlParser: true }).then(
+  () => {
+    console.log("[success] task 2 : connected to the database ");
+  },
+  error => {
+    console.log("[failed] task 2 " + error);
+    process.exit();
+  }
+);
 
-mongoose.connection.on('error', err => {
-    console.error('MongoDB error', err)
-})
+var app = express();
 
-app.use(express.json())
+app.use(cors());
 
-app.post('/products', async (req, res) => {
-    const payload = req.body
-    const product = new Product(payload)
-    await product.save()
-    res.status(201).end()
-})
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.get('/products', async (req, res) => {
-    const products = await Product.find({})
-    res.json(products)
-})
+var port = process.env.PORT || 5000;
 
-app.get('/products/findById/:id', async (req, res) => {
-    const { id } = req.params
-    const product = await Product.findById(id)
-    res.json(product)
-})
+app.listen(port, () => {
+  console.log("[success] task 1 : listening on port " + port);
+});
 
-// app.get('/products/findByName/:name', async (req, res) => {
-//     const { name } = req.params
-//     const product = await Product.findOne({ name: name })
-//     res.json(product)
-// })
+app.get("/", (req, res) => {
+  res.status(200).send("first page of api express");
+});
 
-app.put('/products/:id', async (req, res) => {
-    const payload = req.body
-    const { id } = req.params
+var Product = require("./productrouter");
+app.use("/v01/api/product", Product);
 
-    const product = await Product.findByIdAndUpdate(id, { $set: payload })
-    res.json(product)
-})
-
-app.delete('/products/:id', async (req, res) => {
-    const { id } = req.params
-
-    await Product.findByIdAndDelete(id)
-    res.status(204).end()
-})
-
-app.listen(9000, () => {
-    console.log('Application is running on port 9000')
-})
+app.use((req, res, next) => {
+  var err = new Error("path not found");
+  err.status = 404;
+  next(err);
+});

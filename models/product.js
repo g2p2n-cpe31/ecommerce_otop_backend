@@ -3,9 +3,15 @@ const Schema = mongoose.Schema
 
 const productSchema = new Schema({
   name: String,
-  category: String,
+  store: String,
+  owner: Number,
   price: Number,
-  tags: [String]
+  rating: Number,
+  sell: Number,
+  total: Number,
+  catagories: String,
+  regions: String,
+  pic: [String]
 }, { timestamps: true, versionKey: false })
 
 const ProductModel = mongoose.model('Product', productSchema)
