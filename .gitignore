@@ -136,4 +136,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# key
+service-account.json
+
 # End of https://www.gitignore.io/api/git,node,windows
