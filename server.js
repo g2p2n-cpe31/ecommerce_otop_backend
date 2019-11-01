@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 
 require('dotenv').config()
 var uri = process.env.URL_MONGO
-var port = process.env.PORT || 5000;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(uri, { useNewUrlParser: true }).then(
@@ -25,8 +24,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
-  console.log("[success] task 1 : listening on port " + port);
+  console.log('[success] task 1 : listening on port ', port);
 });
 
 app.get("/", (req, res) => {
