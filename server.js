@@ -3,9 +3,12 @@ var cors = require("cors");
 var mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-var mongo_uri = "mongodb+srv://godpoon:poonshit@cluster0-vvj6e.gcp.mongodb.net/otop_ecommerce?retryWrites=true&w=majority";
+require('dotenv').config()
+var uri = process.env.URL_MONGO
+var port = process.env.PORT || 5000;
+
 mongoose.Promise = global.Promise;
-mongoose.connect(mongo_uri, { useNewUrlParser: true }).then(
+mongoose.connect(uri, { useNewUrlParser: true }).then(
   () => {
     console.log("[success] task 2 : connected to the database ");
   },
@@ -21,8 +24,6 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-var port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log("[success] task 1 : listening on port " + port);
