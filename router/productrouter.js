@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var Product = require("./models/product");
+var Product = require("../models/product");
 
 // GET all
 router.get("/", (req, res) => {

@@ -33,8 +33,11 @@ app.get("/", (req, res) => {
   res.status(200).send("first page of api express");
 });
 
-var Product = require("./productrouter");
+var Product = require("./router/productrouter");
 app.use("/v01/api/product", Product);
+
+var Account = require("./router/accountrouter");
+app.use("/v01/api/account", Account);
 
 app.use((req, res, next) => {
   var err = new Error("path not found");
