@@ -39,6 +39,9 @@ app.use("/v01/api/product", Product);
 var Account = require("./router/accountrouter");
 app.use("/v01/api/account", Account);
 
+var Store = require("./router/storerouter");
+app.use("/v01/api/store", Store);
+
 app.use((req, res, next) => {
   var err = new Error("path not found");
   err.status = 404;
