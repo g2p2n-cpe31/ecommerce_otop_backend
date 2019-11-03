@@ -42,6 +42,15 @@ app.use("/v01/api/account", Account);
 var Store = require("./router/storerouter");
 app.use("/v01/api/store", Store);
 
+var Cart = require("./router/cartrouter");
+app.use("/v01/api/cart", Cart);
+
+var Payment = require("./router/paymentrouter");
+app.use("/v01/api/payment", Payment);
+
+var Order = require("./router/orderrouter");
+app.use("/v01/api/order", Order);
+
 app.use((req, res, next) => {
   var err = new Error("path not found");
   err.status = 404;
