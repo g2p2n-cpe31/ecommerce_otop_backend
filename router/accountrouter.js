@@ -20,7 +20,7 @@ router.get("/:_id", (req, res) => {
 
 // GET by name
 router.get("/username/:name", (req, res) => {
-  const query = {'name': {'$regex': req.params.name }};
+  const query = {'username': {'$regex': req.params.name }};
   Account.find(query).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);

@@ -39,7 +39,7 @@ router.get("/price/lte/:num", (req, res) => {
 
 // GET by name
 router.get("/name/:name", (req, res) => {
-  const query = {'name': {'$regex': req.params.name }};
+  const query = { 'name': { '$regex': req.params.name } };
   Product.find(query).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);
@@ -60,6 +60,15 @@ router.post("/put/:_id", (req, res) => {
   Product.findByIdAndUpdate(req.params._id, { $set: req.body }, (err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send("Update success");
+  });
+});
+
+// PUT (update current data)
+router.post("/putIn/:_id", (req, res) => {
+  Product.findByIdAndUpdate(req.params._id, { $set: { "pic.$[element]": 100 } }, {arrayFilters: [ { "element": { "pic": aa } } ] 
+    // (err, data) => {
+    // if (err) return res.status(400).send(err);
+    // res.status(200).send("Update success");
   });
 });
 

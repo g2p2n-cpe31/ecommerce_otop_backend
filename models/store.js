@@ -8,7 +8,7 @@ const storeSchema = new Schema({
   phoneNumber: String,
   email: String,
   inviteCode: String,
-  ownerId: [String],
+  ownerId: String,
   partnerId: [String],
   partnerWaitId: [String],
   productId: [String]
