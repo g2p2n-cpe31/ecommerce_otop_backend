@@ -63,15 +63,6 @@ router.post("/put/:_id", (req, res) => {
   });
 });
 
-// PUT (update current data)
-router.post("/putIn/:_id", (req, res) => {
-  Product.findByIdAndUpdate(req.params._id, { $set: { "pic.$[element]": 100 } }, {arrayFilters: [ { "element": { "pic": aa } } ] 
-    // (err, data) => {
-    // if (err) return res.status(400).send(err);
-    // res.status(200).send("Update success");
-  });
-});
-
 // DELETE (delete 1 data)
 router.post("/delete/:_id", (req, res) => {
   Product.findByIdAndDelete(req.params._id, (err, data) => {
