@@ -35,44 +35,178 @@ router.get("/:_id", (req, res) => {
   });
 });
 
-// POST (create new data)
-router.post("/", (req, res) => {
-  var obj = new Product(req.body);
-  obj.save((err, data) => {
+// GET 
+router.get("/avaliable/sortbyname/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name }, "total": { "$gte": 1 } };
+  Product.find(query).sort({ name: 1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
-    res.status(200).send("Add success");
+    res.status(200).send(data);
   });
 });
 
-// PUT (update current data)
-router.post("/put/:_id", (req, res) => {
-  Product.findByIdAndUpdate(req.params._id, { $set: req.body }, (err, data) => {
+// GET 
+router.get("/avaliable/sortbytotal1/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name }, "total": { "$gte": 1 } };
+  Product.find(query).sort({ total: 1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
-    res.status(200).send("Update success");
+    res.status(200).send(data);
   });
 });
 
-// DELETE (delete 1 data)
-router.post("/delete/:_id", (req, res) => {
-  Product.findByIdAndDelete(req.params._id, (err, data) => {
+// GET 
+router.get("/avaliable/sortbytotal_1/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name }, "total": { "$gte": 1 } };
+  Product.find(query).sort({ total: -1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
-    res.status(200).send("Delete success");
+    res.status(200).send(data);
   });
 });
 
-// PUT (update current data)
-router.put("/:_id", (req, res) => {
-  Product.findByIdAndUpdate(req.params._id, { $set: req.body }, (err, data) => {
+// GET 
+router.get("/avaliable/sortbyprice1/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name }, "total": { "$gte": 1 } };
+  Product.find(query).sort({ price: 1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
-    res.status(200).send("Update success");
+    res.status(200).send(data);
   });
 });
 
-// DELETE (delete 1 data)
-router.delete("/:_id", (req, res) => {
-  Product.findByIdAndDelete(req.params._id, (err, data) => {
+// GET 
+router.get("/avaliable/sortbyprice_1/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name }, "total": { "$gte": 1 } };
+  Product.find(query).sort({ price: -1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
-    res.status(200).send("Delete success");
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbyname/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name } };
+  Product.find(query).sort({ name: 1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbytotal1/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name } };
+  Product.find(query).sort({ total: 1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbytotal_1/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name } };
+  Product.find(query).sort({ total: -1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbyprice1/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name } };
+  Product.find(query).sort({ price: 1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbyprice_1/name/:name", (req, res) => {
+  const query = { "name": { '$regex': req.params.name } };
+  Product.find(query).sort({ price: -1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/avaliable/sortbyname/name", (req, res) => {
+  const query = { "total": { "$gte": 1 } };
+  Product.find(query).sort({ name: 1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/avaliable/sortbytotal1/name", (req, res) => {
+  const query = { "total": { "$gte": 1 } };
+  Product.find(query).sort({ total: 1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/avaliable/sortbytotal_1/name", (req, res) => {
+  const query = { "total": { "$gte": 1 } };
+  Product.find(query).sort({ total: -1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/avaliable/sortbyprice1/name", (req, res) => {
+  const query = { "total": { "$gte": 1 } };
+  Product.find(query).sort({ price: 1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/avaliable/sortbyprice_1/name", (req, res) => {
+  const query = { "total": { "$gte": 1 } };
+  Product.find(query).sort({ price: -1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbyname/name", (req, res) => {
+  Product.sort({ name: 1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbytotal1/name", (req, res) => {
+  Product.sort({ total: 1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbytotal_1/name", (req, res) => {
+  Product.sort({ total: -1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbyprice1/name", (req, res) => {
+  Product.sort({ price: 1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET 
+router.get("/haveall/sortbyprice_1/name", (req, res) => {
+  Product.sort({ price: -1 }).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
   });
 });
 
