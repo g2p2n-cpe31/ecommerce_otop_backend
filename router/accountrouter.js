@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   });
 });
 
-// GET 1
+// GET by id
 router.get("/:_id", (req, res) => {
   Account.findById(req.params._id).exec((err, data) => {
     if (err) return res.status(400).send(err);
@@ -18,9 +18,9 @@ router.get("/:_id", (req, res) => {
   });
 });
 
-// GET by name
-router.get("/username/:name", (req, res) => {
-  const query = {'username': {'$regex': req.params.name }};
+// GET by username
+router.get("/username/:username", (req, res) => {
+  const query = {'username': {'$regex': req.params.username }};
   Account.find(query).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);

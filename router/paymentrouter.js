@@ -18,9 +18,9 @@ router.get("/:_id", (req, res) => {
   });
 });
 
-// GET by name
-router.get("/username/:name", (req, res) => {
-  const query = {'name': {'$regex': req.params.name }};
+// GET by orderId
+router.get("/orderId/:orderid", (req, res) => {
+  const query = {'orderId': {'$regex': req.params.orderid }};
   Payment.find(query).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);

@@ -18,10 +18,10 @@ router.get("/:_id", (req, res) => {
   });
 });
 
-// GET by name
-router.get("/username/:name", (req, res) => {
-  const query = {'name': {'$regex': req.params.name }};
-  Cart.find(query).exec((err, data) => {
+// GET by username
+router.get("/username/:username", (req, res) => {
+  const query = { 'username': { '$regex': req.params.username } };
+  Account.find(query).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);
   });
