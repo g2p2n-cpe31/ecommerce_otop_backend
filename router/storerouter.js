@@ -44,6 +44,22 @@ router.post("/put/:_id", (req, res) => {
   });
 });
 
+// add (update current data)
+router.post("/addtoset/:_id", (req, res) => {
+  Store.findByIdAndUpdate(req.params._id, { $addToSet: req.body }, (err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send("Update success");
+  });
+});
+
+// pop (update current data)
+router.post("/popfromset/:_id", (req, res) => {
+  Store.findByIdAndUpdate(req.params._id, { $pop: req.body }, (err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send("Update success");
+  });
+});
+
 // DELETE (delete 1 data)
 router.post("/delete/:_id", (req, res) => {
   Store.findByIdAndDelete(req.params._id, (err, data) => {

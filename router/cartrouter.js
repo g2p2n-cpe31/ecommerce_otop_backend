@@ -61,6 +61,14 @@ router.post("/put/userId/:userid", (req, res) => {
   });
 });
 
+// PUT (update current data)
+router.post("/addtoset/userId/:userid", (req, res) => {
+  Cart.findOneAndUpdate({ 'userId': req.params.userid, 'store.storeId': 'aaaa'}, { $addToSet: {'store': req.body} }, (err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send("Update success");
+  });
+});
+
 // DELETE (delete 1 data)
 router.post("/delete/:_id", (req, res) => {
   Cart.findByIdAndDelete(req.params._id, (err, data) => {
