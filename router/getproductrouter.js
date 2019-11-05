@@ -172,7 +172,7 @@ router.get("/avaliable/sortbyprice_1/name", (req, res) => {
 
 // GET 
 router.get("/haveall/sortbyname/name", (req, res) => {
-  Product.sort({ name: 1 }).exec((err, data) => {
+  Product.find().sort({ name: 1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);
   });
@@ -180,7 +180,7 @@ router.get("/haveall/sortbyname/name", (req, res) => {
 
 // GET 
 router.get("/haveall/sortbytotal1/name", (req, res) => {
-  Product.sort({ total: 1 }).exec((err, data) => {
+  Product.find().sort({ total: 1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);
   });
@@ -188,7 +188,7 @@ router.get("/haveall/sortbytotal1/name", (req, res) => {
 
 // GET 
 router.get("/haveall/sortbytotal_1/name", (req, res) => {
-  Product.sort({ total: -1 }).exec((err, data) => {
+  Product.find().sort({ total: -1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);
   });
@@ -196,7 +196,7 @@ router.get("/haveall/sortbytotal_1/name", (req, res) => {
 
 // GET 
 router.get("/haveall/sortbyprice1/name", (req, res) => {
-  Product.sort({ price: 1 }).exec((err, data) => {
+  Product.find().sort({ price: 1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);
   });
@@ -204,7 +204,7 @@ router.get("/haveall/sortbyprice1/name", (req, res) => {
 
 // GET 
 router.get("/haveall/sortbyprice_1/name", (req, res) => {
-  Product.sort({ price: -1 }).exec((err, data) => {
+  Product.find().sort({ price: -1 }).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);
   });

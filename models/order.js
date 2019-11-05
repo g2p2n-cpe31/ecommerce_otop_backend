@@ -5,6 +5,7 @@ const orderSchema = new Schema({
   orderId: String,
   storeId: String,
   payBy: String,
+  state: String,
   shipOption: String,
   shipNumber: String,
   shippingProvince: String,
