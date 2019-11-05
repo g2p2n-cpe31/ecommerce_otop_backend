@@ -18,11 +18,13 @@ const orderSchema = new Schema({
   firstname: String,
   lastname: String,
   phoneNumber: String,
-  productId: [String],
-  productName: [String],
-  amount: [Number],
-  price: [Number],
-  postScript: [String],
+  product: [{
+    productId: String,
+    productName: String,
+    amount: Number,
+    price: Number,
+    postScript: String
+  }],
   totalPrice: Number
 }, { timestamps: true, versionKey: false })
 

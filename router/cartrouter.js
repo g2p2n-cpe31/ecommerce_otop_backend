@@ -18,6 +18,15 @@ router.get("/:_id", (req, res) => {
   });
 });
 
+// GET by userid
+router.get("/userId/:userid", (req, res) => {
+  const query = { 'userId': { '$regex': req.params.userid } };
+  Account.find(query).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
 // GET by username
 router.get("/username/:username", (req, res) => {
   const query = { 'username': { '$regex': req.params.username } };
@@ -39,6 +48,14 @@ router.post("/", (req, res) => {
 // PUT (update current data)
 router.post("/put/:_id", (req, res) => {
   Cart.findByIdAndUpdate(req.params._id, { $set: req.body }, (err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send("Update success");
+  });
+});
+
+// PUT (update current data)
+router.post("/put/userId/:userid", (req, res) => {
+  Cart.findByIdAndUpdate({ userId: req.params.userid }, { $set: req.body }, (err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send("Update success");
   });
