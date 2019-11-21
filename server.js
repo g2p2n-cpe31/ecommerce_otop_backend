@@ -40,46 +40,46 @@ app.get("/", (req, res) => {
 });
 
 var Product = require("./router/productrouter");
-app.use("/v01/api/product", Product);
+app.use(process.env.useProduct, Product);
 
 var Account = require("./router/accountrouter");
-app.use("/v01/api/account", Account);
+app.use(process.env.useAccount, Account);
 
 var Store = require("./router/storerouter");
-app.use("/v01/api/store", Store);
+app.use(process.env.useStore, Store);
 
 var Cart = require("./router/cartrouter");
-app.use("/v01/api/cart", Cart);
+app.use(process.env.useCart, Cart);
 
 var Payment = require("./router/paymentrouter");
-app.use("/v01/api/payment", Payment);
+app.use(process.env.usePayment, Payment);
 
 var Order = require("./router/orderrouter");
-app.use("/v01/api/order", Order);
+app.use(process.env.useOrder, Order);
 
 var SearchpageSortbyname = require("./router/searchpageSortbynamerouter");
-app.use("/v01/api/searchpage/sortbyname", SearchpageSortbyname);
+app.use(process.env.SearchpageSortbyname, SearchpageSortbyname);
 
 var SearchpageSortbyprice1 = require("./router/searchpageSortbyprice1router");
-app.use("/v01/api/searchpage/sortbyprice1", SearchpageSortbyprice1);
+app.use(process.env.SearchpageSortbyprice1, SearchpageSortbyprice1);
 
 var SearchpageSortbyprice_1 = require("./router/searchpageSortbyprice_1router");
-app.use("/v01/api/searchpage/sortbyprice_1", SearchpageSortbyprice_1);
+app.use(process.env.SearchpageSortbyprice_1, SearchpageSortbyprice_1);
 
 var SearchpageSortbysell1 = require("./router/searchpageSortbysell1router");
-app.use("/v01/api/searchpage/sortbysell1", SearchpageSortbysell1);
+app.use(process.env.SearchpageSortbysell1, SearchpageSortbysell1);
 
 var SearchpageSortbysell_1 = require("./router/searchpageSortbysell_1router");
-app.use("/v01/api/searchpage/sortbysell_1", SearchpageSortbysell_1);
+app.use(process.env.SearchpageSortbysell_1, SearchpageSortbysell_1);
 
 var SearchpageSortbyrating1 = require("./router/searchpageSortbysell1router");
-app.use("/v01/api/searchpage/sortbyrating1", SearchpageSortbyrating1);
+app.use(process.env.SearchpageSortbyrating1, SearchpageSortbyrating1);
 
 var SearchpageSortbyrating_1 = require("./router/searchpageSortbysell_1router");
-app.use("/v01/api/searchpage/sortbyrating_1", SearchpageSortbyrating_1);
+app.use(process.env.SearchpageSortbyrating_1, SearchpageSortbyrating_1);
 
 var GetProduct = require("./router/getproductrouter");
-app.use("/v01/api/getproduct", GetProduct);
+app.use(process.env.useGetProduct, GetProduct);
 
 app.use((req, res, next) => {
   var err = new Error("path not found");

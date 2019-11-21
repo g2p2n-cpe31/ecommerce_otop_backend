@@ -20,7 +20,16 @@ router.get("/:_id", (req, res) => {
 
 // GET by username
 router.get("/username/:username", (req, res) => {
-  const query = {'username': {'$regex': req.params.username }};
+  const query = { 'username': req.params.username };
+  Account.find(query).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// GET by username
+router.get("/email/:email", (req, res) => {
+  const query = { 'email': req.params.email };
   Account.find(query).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);
